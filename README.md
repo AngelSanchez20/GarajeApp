@@ -143,9 +143,8 @@ GarajeApp/
 ## 🚀 Cómo ejecutar el proyecto
 
 1. **Clonar el repositorio**:
-   <!-- Reemplazar NOMBRE-DEL-REPO por el nombre real del repositorio en GitHub -->
    ```bash
-   git clone https://github.com/AngelSanchez20/NOMBRE-DEL-REPO.git
+   git clone https://github.com/AngelSanchez20/GarajeApp.git
    ```
 
 2. **Abrir el proyecto en Android Studio**:
