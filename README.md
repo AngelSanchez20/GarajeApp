@@ -132,14 +132,6 @@ GarajeApp/
 
 ---
 
-## 📸 Capturas
-
-| Formulario (`MainActivity`) | Garaje (`ListaActivity`) | Ficha (`DetalleActivity`) |
-| :---: | :---: | :---: |
-| ![Formulario](docs/formulario.png) | ![Garaje](docs/garaje.png) | ![Ficha](docs/ficha.png) |
-
----
-
 ## 🚀 Cómo ejecutar el proyecto
 
 1. **Clonar el repositorio**:
