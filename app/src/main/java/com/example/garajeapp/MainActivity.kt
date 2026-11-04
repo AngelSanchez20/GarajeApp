@@ -6,11 +6,17 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Obtenemos el DAO de Room
+        val dao = AppDatabase.obtener(this).vehiculoDao()
 
         val editMarca = findViewById<EditText>(R.id.editMarca)
         val editModelo = findViewById<EditText>(R.id.editModelo)
@@ -23,6 +29,7 @@ class MainActivity : ComponentActivity() {
         editMarca.setText(prefs.getString("ULTIMA_MARCA", ""))
 
         botonAnadir.setOnClickListener {
+
             val marca = editMarca.text.toString().trim()
             val modelo = editModelo.text.toString().trim()
             val potenciaTexto = editPotencia.text.toString().trim()
@@ -32,36 +39,72 @@ class MainActivity : ComponentActivity() {
                 marca.isEmpty() -> {
                     Toast.makeText(this, "Escribe la marca del coche", Toast.LENGTH_SHORT).show()
                 }
+
                 modelo.isEmpty() -> {
                     Toast.makeText(this, "Escribe el modelo del coche", Toast.LENGTH_SHORT).show()
                 }
+
                 potenciaTexto.isEmpty() -> {
                     Toast.makeText(this, "Escribe la potencia del coche", Toast.LENGTH_SHORT).show()
                 }
+
                 potencia == null -> {
                     Toast.makeText(this, "La potencia tiene que ser un número", Toast.LENGTH_SHORT).show()
                 }
+
                 potencia <= 0 -> {
                     Toast.makeText(this, "La potencia tiene que ser mayor que 0", Toast.LENGTH_SHORT).show()
                 }
+
                 else -> {
+
+                    // Guardamos la última marca
                     prefs.edit().putString("ULTIMA_MARCA", marca).apply()
 
-                    Garaje.coches.add(Coche(marca, modelo, potencia))
-                    Toast.makeText(this, "Coche añadido", Toast.LENGTH_SHORT).show()
+                    // Guardamos el coche en Room
+                    lifecycleScope.launch {
 
-                    // Vaciamos modelo y potencia para el siguiente coche
-                    editModelo.setText("")
-                    editPotencia.setText("")
+                        val vehiculo = Vehiculo(
+                            marca = marca,
+                            modelo = modelo,
+                            potencia = potencia
+                        )
+
+                        dao.insertar(vehiculo)
+
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Coche añadido",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        // Limpiamos los campos
+                        editModelo.setText("")
+                        editPotencia.setText("")
+                    }
                 }
             }
         }
 
+        // Botón para consultar el garaje
         botonVerGaraje.setOnClickListener {
-            if (Garaje.coches.isEmpty()) {
-                Toast.makeText(this, "Todavía no has añadido ningún coche", Toast.LENGTH_SHORT).show()
-            } else {
-                startActivity(Intent(this, ListaActivity::class.java))
+
+            lifecycleScope.launch {
+
+                val coches = dao.obtenerTodas()
+
+                if (coches.isEmpty()) {
+
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Todavía no has añadido ningún coche",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                } else {
+
+                    startActivity(Intent(this@MainActivity, ListaActivity::class.java))
+                }
             }
         }
     }
