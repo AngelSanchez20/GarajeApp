@@ -1,4 +1,3 @@
-
 package com.example.garajeapp
 
 import android.os.Bundle

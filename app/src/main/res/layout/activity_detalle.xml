@@ -1,44 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/imagenDetalle"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginBottom="24dp"
-        android:contentDescription="Imagen del coche"
-        android:scaleType="fitCenter" />
-
-    <TextView
-        android:id="@+id/textoMarcaModeloDetalle"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:textSize="26sp" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <TextView
-        android:id="@+id/textoPotenciaDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:textSize="18sp" />
+        <!-- Fotografía capturada del coche (si existe) -->
+        <ImageView
+            android:id="@+id/imagenFotoDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="Fotografía del coche"
+            android:scaleType="centerCrop"
+            android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/textoCategoriaDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        <!-- Imagen de la categoría del coche -->
+        <ImageView
+            android:id="@+id/imagenDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="Imagen de la categoría"
+            android:scaleType="fitCenter" />
 
-    <Button
-        android:id="@+id/botonVolverDetalle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Volver" />
+        <TextView
+            android:id="@+id/textoMarcaModeloDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/textoPotenciaDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textoCategoriaDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textSize="18sp" />
+
+        <!-- Coordenadas GPS -->
+        <TextView
+            android:id="@+id/textoUbicacionDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:textColor="#475569"
+            android:textSize="16sp" />
+
+        <!-- Bloque Visual de Información Online (Wikipedia API + Room Cache) -->
+        <LinearLayout
+            android:id="@+id/contenedorMarcaWiki"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:background="#F1F5F9"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="🌐 Historia de la marca (Wikipedia)"
+                android:textColor="#0F172A"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Indicador de Carga -->
+            <ProgressBar
+                android:id="@+id/pbCargandoMarca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="12dp"
+                android:visibility="gone" />
+
+            <!-- Indicador de Estado de Red / Error / Offline -->
+            <TextView
+                android:id="@+id/tvEstadoMarca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="#64748B"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:visibility="gone" />
+
+            <!-- Título de la entrada -->
+            <TextView
+                android:id="@+id/tvTituloMarcaWiki"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:textColor="#1E293B"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <!-- Resumen / Extracto -->
+            <TextView
+                android:id="@+id/tvHistoriaMarcaWiki"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="2dp"
+                android:textColor="#334155"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/botonVolverDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver" />
+
+    </LinearLayout>
+</ScrollView>

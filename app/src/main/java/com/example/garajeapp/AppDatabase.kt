@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Vehiculo::class], version = 1)
+@Database(entities = [Vehiculo::class, MarcaInfo::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun vehiculoDao(): VehiculoDao
+    abstract fun marcaInfoDao(): MarcaInfoDao
 
     companion object {
 
@@ -23,7 +24,9 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "garaje_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
 
                 instancia = nueva
                 nueva

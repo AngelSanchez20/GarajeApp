@@ -11,5 +11,8 @@ data class Vehiculo(
 
     val marca: String,
     val modelo: String,
-    val potencia: Int
+    val potencia: Int,
+    val latitud: Double? = null,
+    val longitud: Double? = null,
+    val fotoPath: String? = null
 )
