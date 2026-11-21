@@ -76,6 +76,17 @@ La aplicación mantiene las funcionalidades previas de persistencia local, fotog
 
 ---
 
+🚀 Cómo Ejecutar el Proyecto
+Abre el proyecto en Android Studio y espera a que Gradle sincronice las dependencias (libs.versions.toml).
+
+Selecciona un emulador Android o conecta un dispositivo físico y compila/ejecuta la aplicación (app).
+
+Prueba online: Abre el detalle de un vehículo con conexión a Internet para cargar la información de la marca y guardarla en la caché de Room.
+
+Prueba offline: Desactiva el Wi-Fi / datos móviles o activa el modo avión y vuelve a abrir el detalle para comprobar la carga desde caché o el mensaje de error si no existe registro previo.
+
+---
+
 ## 📂 Estructura del Proyecto
 
 El código fuente principal se encuentra en `app/src/main/java/com/example/garajeapp/` y los diseños de interfaz en `app/src/main/res/layout/`:
@@ -119,10 +130,6 @@ GarajeApp/
 ├── gradle/libs.versions.toml
 └── settings.gradle.kts
 
-🚀 Cómo Ejecutar el Proyecto
-Abre el proyecto en Android Studio y espera a que Gradle sincronice las dependencias (libs.versions.toml).
-
-Selecciona un emulador Android o conecta un dispositivo físico y compila/ejecuta la aplicación (app).
 
 Prueba online: Abre el detalle de un vehículo con conexión a Internet para cargar la información de la marca y guardarla en la caché de Room.
 
