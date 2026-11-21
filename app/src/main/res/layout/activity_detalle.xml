@@ -11,7 +11,6 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <!-- Fotografía capturada del coche (si existe) -->
         <ImageView
             android:id="@+id/imagenFotoDetalle"
             android:layout_width="match_parent"
@@ -21,7 +20,6 @@
             android:scaleType="centerCrop"
             android:visibility="gone" />
 
-        <!-- Imagen de la categoría del coche -->
         <ImageView
             android:id="@+id/imagenDetalle"
             android:layout_width="match_parent"
@@ -52,7 +50,6 @@
             android:layout_marginBottom="8dp"
             android:textSize="18sp" />
 
-        <!-- Coordenadas GPS -->
         <TextView
             android:id="@+id/textoUbicacionDetalle"
             android:layout_width="wrap_content"
@@ -61,7 +58,6 @@
             android:textColor="#475569"
             android:textSize="16sp" />
 
-        <!-- Bloque Visual de Información Online (Wikipedia API + Room Cache) -->
         <LinearLayout
             android:id="@+id/contenedorMarcaWiki"
             android:layout_width="match_parent"
@@ -80,7 +76,6 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <!-- Indicador de Carga -->
             <ProgressBar
                 android:id="@+id/pbCargandoMarca"
                 android:layout_width="wrap_content"
@@ -89,7 +84,6 @@
                 android:layout_margin="12dp"
                 android:visibility="gone" />
 
-            <!-- Indicador de Estado de Red / Error / Offline -->
             <TextView
                 android:id="@+id/tvEstadoMarca"
                 android:layout_width="match_parent"
@@ -100,7 +94,6 @@
                 android:textStyle="italic"
                 android:visibility="gone" />
 
-            <!-- Título de la entrada -->
             <TextView
                 android:id="@+id/tvTituloMarcaWiki"
                 android:layout_width="match_parent"
@@ -111,7 +104,6 @@
                 android:textStyle="bold"
                 android:visibility="gone" />
 
-            <!-- Resumen / Extracto -->
             <TextView
                 android:id="@+id/tvHistoriaMarcaWiki"
                 android:layout_width="match_parent"

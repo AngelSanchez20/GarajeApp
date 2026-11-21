@@ -40,7 +40,6 @@ class CocheAdapter(
         holder.textoMarcaModelo.text = "${vehiculo.marca} ${vehiculo.modelo}"
         holder.textoPotencia.text = "${vehiculo.potencia} CV"
 
-        // Icono de categoría
         val imagenCategoria = when {
             vehiculo.potencia < 100 -> R.drawable.coche_utilitario
             vehiculo.potencia <= 300 -> R.drawable.coche_deportivo
@@ -48,7 +47,6 @@ class CocheAdapter(
         }
         holder.imagen.setImageResource(imagenCategoria)
 
-        // Fotografía personalizada (si existe)
         val bitmap = Fotos.cargar(vehiculo.fotoPath)
         if (bitmap != null) {
             holder.imagenFoto.setImageBitmap(bitmap)
@@ -57,7 +55,6 @@ class CocheAdapter(
             holder.imagenFoto.visibility = View.GONE
         }
 
-        // Coordenadas GPS (si existen)
         if (vehiculo.latitud != null && vehiculo.longitud != null) {
             holder.textoUbicacion.text =
                 "GPS: %.4f, %.4f".format(vehiculo.latitud, vehiculo.longitud)
@@ -66,7 +63,6 @@ class CocheAdapter(
             holder.textoUbicacion.visibility = View.GONE
         }
 
-        // Pulsar para ver detalles
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetalleActivity::class.java).apply {
                 putExtra("MARCA", vehiculo.marca)
@@ -83,7 +79,6 @@ class CocheAdapter(
             holder.itemView.context.startActivity(intent)
         }
 
-        // Clic en el botón de eliminar (papelera) de la fila
         holder.btnEliminar.setOnClickListener {
             alBorrar(vehiculo)
         }

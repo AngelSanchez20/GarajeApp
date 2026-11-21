@@ -38,11 +38,9 @@ class WikipediaRepository(
                 )
             }
         } catch (e: Exception) {
-            // AQUÍ VEMOS EL ERROR EXACTO EN EL LOGCAT
             android.util.Log.e("WIKI_DEBUG", "Excepción capturada: ${e.message}", e)
         }
 
-        // Modo Offline: Caché local Room
         val cacheLocal = marcaInfoDao.obtenerPorMarca(marca.trim())
         if (cacheLocal != null) {
             return@withContext WikipediaResult(cacheLocal, true)

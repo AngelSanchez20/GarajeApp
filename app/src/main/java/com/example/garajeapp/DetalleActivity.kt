@@ -28,13 +28,11 @@ class DetalleActivity : ComponentActivity() {
         val textoUbicacion = findViewById<TextView>(R.id.textoUbicacionDetalle)
         val botonVolver = findViewById<Button>(R.id.botonVolverDetalle)
 
-        // Elementos de la tarjeta de Wikipedia (API + Room Cache) sin logo
         val pbCargandoMarca = findViewById<ProgressBar>(R.id.pbCargandoMarca)
         val tvEstadoMarca = findViewById<TextView>(R.id.tvEstadoMarca)
         val tvTituloMarcaWiki = findViewById<TextView>(R.id.tvTituloMarcaWiki)
         val tvHistoriaMarcaWiki = findViewById<TextView>(R.id.tvHistoriaMarcaWiki)
 
-        // Recogemos los datos que nos manda la lista
         val marca = intent.getStringExtra("MARCA") ?: ""
         val modelo = intent.getStringExtra("MODELO") ?: ""
         val potencia = intent.getIntExtra("POTENCIA", 0)
@@ -43,7 +41,6 @@ class DetalleActivity : ComponentActivity() {
         textoMarcaModelo.text = "$marca $modelo"
         textoPotencia.text = "Potencia: $potencia CV"
 
-        // Fotografía del vehículo si existe
         val bitmap = Fotos.cargar(fotoPath)
         if (bitmap != null) {
             imagenFoto.setImageBitmap(bitmap)
@@ -52,7 +49,6 @@ class DetalleActivity : ComponentActivity() {
             imagenFoto.visibility = View.GONE
         }
 
-        // Ubicación GPS si existe
         if (intent.hasExtra("LATITUD") && intent.hasExtra("LONGITUD")) {
             val lat = intent.getDoubleExtra("LATITUD", 0.0)
             val lon = intent.getDoubleExtra("LONGITUD", 0.0)
@@ -61,7 +57,6 @@ class DetalleActivity : ComponentActivity() {
             textoUbicacion.text = "Ubicación: No registrada"
         }
 
-        // Categoría e imagen representativa
         var categoria = "Superdeportivo"
         var imagenCategoria = R.drawable.coche_super
         var sonido = R.raw.motor_super
@@ -79,11 +74,9 @@ class DetalleActivity : ComponentActivity() {
         textoCategoria.text = "Categoría: $categoria"
         imagen.setImageResource(imagenCategoria)
 
-        // Sonido de motor
         mediaPlayer = MediaPlayer.create(this, sonido)
         mediaPlayer?.start()
 
-        // Inicializamos el ViewModel con su Factory
         val marcaDao = AppDatabase.obtener(this).marcaInfoDao()
         val repository = WikipediaRepository(marcaDao)
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
@@ -93,7 +86,6 @@ class DetalleActivity : ComponentActivity() {
             }
         })[DetalleViewModel::class.java]
 
-        // Observamos los estados de la consulta online/offline
         viewModel.uiState.observe(this) { state ->
             when (state) {
                 is DetalleUiState.Loading -> {
@@ -136,7 +128,6 @@ class DetalleActivity : ComponentActivity() {
             }
         }
 
-        // Cargamos la información de la marca desde Wikipedia/Room
         if (marca.isNotBlank()) {
             viewModel.cargarInfoMarca(marca)
         }

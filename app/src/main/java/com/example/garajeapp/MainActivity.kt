@@ -33,7 +33,6 @@ class MainActivity : ComponentActivity() {
     private lateinit var ivFoto: ImageView
     private lateinit var tvUbicacion: TextView
 
-    // 1) Pedir permiso de cámara
     private val pedirPermisoCamara = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { concedido ->
@@ -44,7 +43,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // 2) Abrir la cámara y recibir la foto
     private val hacerFoto = registerForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { exito ->
@@ -60,7 +58,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // 3) Elegir una foto de la galería
     private val elegirDeGaleria = registerForActivityResult(
         ActivityResultContracts.PickVisualMedia()
     ) { uri ->
@@ -76,7 +73,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    // 4) Pedir permisos de ubicación GPS
     private val pedirPermisosUbicacion = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
     ) { resultado ->
@@ -111,11 +107,9 @@ class MainActivity : ComponentActivity() {
         val botonAnadir = findViewById<Button>(R.id.botonAnadir)
         val botonVerGaraje = findViewById<Button>(R.id.botonVerGaraje)
 
-        // Recordamos la última marca escrita
         val prefs = getSharedPreferences("MiGaraje", MODE_PRIVATE)
         editMarca.setText(prefs.getString("ULTIMA_MARCA", ""))
 
-        // Eventos multimedia y GPS
         btnCamara.setOnClickListener { pulsarBotonFoto() }
         btnGaleria.setOnClickListener {
             elegirDeGaleria.launch(
@@ -157,10 +151,8 @@ class MainActivity : ComponentActivity() {
                 }
 
                 else -> {
-                    // Guardamos la última marca
                     prefs.edit().putString("ULTIMA_MARCA", marca).apply()
 
-                    // Guardamos el vehículo en Room con foto y GPS
                     lifecycleScope.launch {
                         val vehiculo = Vehiculo(
                             marca = marca,
@@ -176,11 +168,9 @@ class MainActivity : ComponentActivity() {
                         Toast.makeText(this@MainActivity, "Coche añadido", Toast.LENGTH_SHORT)
                             .show()
 
-                        // Limpiamos campos de texto
                         editModelo.setText("")
                         editPotencia.setText("")
 
-                        // Reseteamos foto y coordenadas para el siguiente coche
                         fotoPath = null
                         archivoFotoActual = null
                         latitud = null

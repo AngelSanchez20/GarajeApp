@@ -6,7 +6,6 @@
     android:orientation="horizontal"
     android:padding="12dp">
 
-    <!-- Icono de categoría del coche -->
     <ImageView
         android:id="@+id/imagenFila"
         android:layout_width="56dp"
@@ -15,7 +14,6 @@
         android:contentDescription="Categoría del coche"
         android:scaleType="centerCrop" />
 
-    <!-- Fotografía personalizada del vehículo (si existe) -->
     <ImageView
         android:id="@+id/imagenFotoFila"
         android:layout_width="56dp"
