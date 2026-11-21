@@ -1,53 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Mi Garaje"
-        android:textSize="28sp" />
-
-    <EditText
-        android:id="@+id/editMarca"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:hint="Marca (ej. Seat)"
-        android:inputType="textCapWords" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <EditText
-        android:id="@+id/editModelo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:hint="Modelo (ej. Ibiza)"
-        android:inputType="textCapWords" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Mi Garaje"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editPotencia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:hint="Potencia en CV"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/editMarca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:hint="Marca (ej. Seat)"
+            android:inputType="textCapWords" />
 
-    <Button
-        android:id="@+id/botonAnadir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="Añadir coche" />
+        <EditText
+            android:id="@+id/editModelo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:hint="Modelo (ej. Ibiza)"
+            android:inputType="textCapWords" />
 
-    <Button
-        android:id="@+id/botonVerGaraje"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ver garaje" />
+        <EditText
+            android:id="@+id/editPotencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Potencia en CV"
+            android:inputType="number" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/ivFoto"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="12dp"
+            android:background="#E2E8F0"
+            android:contentDescription="Vista previa de foto"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCamara"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="Hacer foto" />
+
+            <Button
+                android:id="@+id/btnGaleria"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="Elegir de galería" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Obtener ubicación GPS" />
+
+        <TextView
+            android:id="@+id/tvUbicacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"
+            android:text="Ubicación no obtenida"
+            android:textColor="#475569"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/botonAnadir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="Añadir coche" />
+
+        <Button
+            android:id="@+id/botonVerGaraje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ver garaje" />
+
+    </LinearLayout>
+</ScrollView>

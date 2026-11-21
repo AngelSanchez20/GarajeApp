@@ -10,9 +10,18 @@
         android:id="@+id/imagenFila"
         android:layout_width="56dp"
         android:layout_height="56dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="12dp"
         android:contentDescription="Categoría del coche"
         android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/imagenFotoFila"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="Fotografía del coche"
+        android:scaleType="centerCrop"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -24,15 +33,32 @@
             android:id="@+id/textoMarcaModeloFila"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textoPotenciaFila"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/textoUbicacionFila"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:textColor="#64748B"
+            android:textSize="12sp"
+            android:visibility="gone" />
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnEliminarCoche"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="Eliminar coche"
+        android:src="@android:drawable/ic_menu_delete" />
 
 </LinearLayout>
